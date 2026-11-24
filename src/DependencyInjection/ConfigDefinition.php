@@ -99,8 +99,17 @@ final class ConfigDefinition
             ->min(1)
             ->defaultNull();
 
+        $children->integerNode('max_depth')
+            ->info('Number of levels of nested objects a normalization goes through, 512 by default')
+            ->min(1)
+            ->defaultNull();
+
         $children->scalarNode('naming')
             ->info('Built-in naming strategy (snake_case, camelCase, ...) or a service')
+            ->defaultNull();
+
+        $children->scalarNode('expression_language')
+            ->info('ExpressionLanguage service of the skip expressions, the one of the bundle by default')
             ->defaultNull();
 
         self::defineServiceList($children, 'types', 'Type builders');
